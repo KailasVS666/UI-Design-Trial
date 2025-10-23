@@ -26,15 +26,16 @@ body {
 
 /* --- Main Container (from properties image) --- */
 .container {
-    width: 1920px;
-    /* min-height: 1024px; REMOVED fixed height */ 
+    /* === MODIFIED === Removed fixed width and border for responsiveness */
+    width: 100%; 
+    min-height: auto; 
     height: auto;
     max-width: 100%;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
     display: flex;
     flex-direction: column;
-    border: 1px solid #222;
+    border: none;
 }
 
 /* --- Header & Navigation --- */
@@ -52,6 +53,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     max-width: 1300px;
+    width: 100%; /* Ensure navigation uses available width */
     margin: 0 auto;
     padding: 12px 16px;
     background-color: rgba(30, 30, 30, 0.5);
@@ -126,6 +128,7 @@ main {
     align-items: center;
     flex-grow: 1; 
     padding-bottom: 250px; /* Ensure space for curve and logos */
+    width: 100%;
 }
 
 .pre-headline {
@@ -211,10 +214,12 @@ h1 span {
 .hero-content {
     position: relative;
     width: 973px;
+    max-width: 90%; /* Ensure it's responsive */
     height: auto; 
     padding-top: 150px; 
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Center content vertically */
     align-items: center;
     text-align: center;
     gap: 24px; 
@@ -292,6 +297,7 @@ h1 span {
     /* === MODIFIED === */
     padding: 100px 60px;
     max-width: 1700px;
+    width: 100%; /* Added width for responsiveness */
     margin: 0 auto;
     /* === ADDED === Adding padding at the bottom for separation */
     padding-bottom: 150px; 
@@ -474,10 +480,11 @@ h1 span {
      transform: translateX(4px);
 }
 
-/* --- New Works Section Styles --- */
+/* --- Works Section Styles --- */
 .works-section {
     padding: 100px 60px;
     max-width: 1700px;
+    width: 100%; /* Added width for responsiveness */
     margin: 0 auto;
 }
 
@@ -609,4 +616,155 @@ h1 span {
     width: 100%;
     height: auto;
     display: block;
+}
+
+/* ========================================
+    RESPONSIVENESS (MOBILE STYLES)
+========================================
+*/
+
+@media (max-width: 1200px) {
+    /* Adjust padding and container width for smaller desktops/large tablets */
+    .services-section, .works-section {
+        padding: 80px 40px;
+    }
+
+    .container {
+        border: none;
+    }
+}
+
+
+@media (max-width: 768px) {
+    
+    /* Global Adjustments */
+    .container {
+        padding: 0;
+    }
+
+    /* Header/Navigation Adjustments */
+    header {
+        padding: 16px 20px;
+    }
+
+    nav {
+        border-radius: 10px;
+        flex-wrap: wrap; /* Allow elements to stack */
+        padding: 8px 12px;
+    }
+    
+    .nav-links {
+        display: none; /* Hide navigation links on mobile */
+    }
+
+    .cta-button {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    /* Hero Section Adjustments */
+    main {
+        min-height: 600px;
+        padding-bottom: 100px;
+    }
+    
+    .hero-content {
+        max-width: 90%;
+        padding-top: 100px;
+        gap: 16px;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Reduce main heading size */
+    }
+
+    .sub-headline {
+        font-size: 0.9rem;
+        max-width: 90%;
+    }
+
+    .hero-buttons {
+        gap: 10px;
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Curve and Logo Adjustments */
+    .hero-curve-container {
+        max-height: 200px;
+    }
+
+    .hero-logo-trough {
+        bottom: 50px; /* Bring logos up higher */
+        gap: 20px;
+        max-width: 95%;
+    }
+
+    .hero-logo-trough img {
+        height: 18px; /* Reduce logo size */
+    }
+
+
+    /* Services Header Adjustments */
+    .services-section {
+        padding: 50px 20px;
+        padding-bottom: 80px;
+    }
+
+    .services-header, .works-header {
+        flex-direction: column; /* Stack header elements */
+        align-items: flex-start;
+        text-align: left;
+        margin-bottom: 40px;
+    }
+
+    .services-header .header-left, 
+    .works-header .header-left,
+    .services-header .header-right,
+    .works-header .header-right {
+        max-width: 100%; /* Use full width */
+        margin-bottom: 20px;
+    }
+    
+    .services-header .header-right {
+        align-items: flex-start; /* Reset to left alignment */
+    }
+
+    .works-header .header-right {
+        align-items: flex-start; /* Reset to left alignment */
+        text-align: left;
+    }
+
+    .works-header .header-left h2, .services-header .header-left h2 {
+        font-size: 2rem; /* Reduce section title size */
+    }
+
+    /* Services Grid Adjustments */
+    .services-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .service-card {
+        border-right: none; /* Remove vertical borders on mobile */
+        border-left: none;
+        padding: 24px 0;
+    }
+    
+    /* Add top border to the first card and bottom border to the last for separation */
+    .services-grid article:first-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .services-grid article:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+
+    /* Works Grid Adjustments */
+    .works-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 30px;
+    }
 }
